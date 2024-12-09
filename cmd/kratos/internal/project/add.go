@@ -13,7 +13,7 @@ import (
 )
 
 var repoAddIgnores = []string{
-	".git", ".github", "api", "README.md", "LICENSE", "go.mod", "go.sum", "third_party", "openapi.yaml", ".gitignore",
+	".git", ".github", "README.md", "LICENSE", "go.mod", "go.sum", "third_party", "openapi.yaml", ".gitignore",
 }
 
 func (p *Project) Add(ctx context.Context, dir string, layout string, branch string, mod string, pkgPath string) error {
@@ -40,7 +40,7 @@ func (p *Project) Add(ctx context.Context, dir string, layout string, branch str
 
 	pkgPath = fmt.Sprintf("%s/%s", mod, pkgPath)
 	repo := base.NewRepo(layout, branch)
-	err := repo.CopyToV2(ctx, to, pkgPath, repoAddIgnores, []string{filepath.Join(p.Path, "api"), "api"})
+	err := repo.CopyToV2(ctx, to, pkgPath, repoAddIgnores, []string{})
 	if err != nil {
 		return err
 	}
